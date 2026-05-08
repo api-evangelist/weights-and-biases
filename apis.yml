@@ -1,0 +1,29 @@
+aid: weights-and-biases
+url: https://raw.githubusercontent.com/api-evangelist/weights-and-biases/refs/heads/main/apis.yml
+name: Weights & Biases
+x-type: company
+description: >-
+  Weights & Biases is the ML developer platform for experiment tracking, dataset versioning, model registry, and production deployment. Used by OpenAI, Meta, and most major ML labs.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - ML
+  - MLOps
+  - Experiment Tracking
+  - Model Registry
+  - Inference
+created: '2026-05-08'
+modified: '2026-05-08'
+specificationVersion: '0.19'
+apis: []
+common:
+  - type: Website
+    url: https://wandb.ai/
+  - type: Plans
+    url: plans/weights-and-biases-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/weights-and-biases-rate-limits.yml
+  - type: FinOps
+    url: finops/weights-and-biases-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

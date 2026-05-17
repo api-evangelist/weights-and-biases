@@ -1,7 +1,7 @@
 aid: weights-and-biases
 url: https://raw.githubusercontent.com/api-evangelist/weights-and-biases/refs/heads/main/apis.yml
 name: Weights & Biases
-x-type: company
+kind: company
 description: >-
   Weights & Biases is the ML developer platform for experiment tracking, model registry,
   artifact management, sweeps, reports, and (Weave) GenAI evaluation. The W&B API is

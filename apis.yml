@@ -8,67 +8,69 @@ description: >-
   primarily a GraphQL endpoint, surfaced through a Python `wandb.Api` SDK.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - ML
-  - MLOps
-  - Experiment Tracking
-  - Model Registry
-  - GenAI
+- ML
+- MLOps
+- Experiment Tracking
+- Model Registry
+- GenAI
 created: '2026-05-08'
 modified: '2026-05-08'
 specificationVersion: '0.19'
 apis:
-  - aid: weights-and-biases:wandb-graphql-api
-    name: W&B GraphQL API
-    humanURL: https://docs.wandb.ai/ref/python/public-api/api/
-    baseURL: https://api.wandb.ai/graphql
-    tags:
-      - GraphQL
-      - Experiments
-      - Runs
-      - Artifacts
-      - Sweeps
-    description: >-
-      The W&B Public API is a GraphQL endpoint at `https://api.wandb.ai/graphql`. It
-      backs the Python `wandb.Api()` SDK and exposes runs, projects, sweeps, artifacts,
-      reports, registries, and automations. Authentication is via API key.
-    properties:
-      - type: Documentation
-        url: https://docs.wandb.ai/ref/python/public-api/api/
-      - type: Authentication
-        url: https://docs.wandb.ai/guides/track/public-api-guide
-      - type: SDK
-        title: Python (wandb)
-        url: https://docs.wandb.ai/ref/python/
-  - aid: weights-and-biases:wandb-import-api
-    name: W&B Import API (HTTP)
-    humanURL: https://docs.wandb.ai/guides/track/log/
-    baseURL: https://api.wandb.ai/files
-    tags:
-      - HTTP
-      - Logging
-      - Ingestion
-    description: >-
-      The wandb client uses an HTTP file/import endpoint to push run metrics, system
-      stats, and artifacts. Generally accessed through the SDK rather than directly.
-    properties:
-      - type: Documentation
-        url: https://docs.wandb.ai/guides/track/log/
+- aid: weights-and-biases:wandb-graphql-api
+  name: W&B GraphQL API
+  humanURL: https://docs.wandb.ai/ref/python/public-api/api/
+  baseURL: https://api.wandb.ai/graphql
+  tags:
+  - GraphQL
+  - Experiments
+  - Runs
+  - Artifacts
+  - Sweeps
+  description: >-
+    The W&B Public API is a GraphQL endpoint at `https://api.wandb.ai/graphql`. It
+    backs the Python `wandb.Api()` SDK and exposes runs, projects, sweeps, artifacts,
+    reports, registries, and automations. Authentication is via API key.
+  properties:
+  - type: Documentation
+    url: https://docs.wandb.ai/ref/python/public-api/api/
+  - type: Authentication
+    url: https://docs.wandb.ai/guides/track/public-api-guide
+  - type: SDK
+    title: Python (wandb)
+    url: https://docs.wandb.ai/ref/python/
+  - url: graphql/weights-and-biases-graphql.md
+    type: GraphQL
+- aid: weights-and-biases:wandb-import-api
+  name: W&B Import API (HTTP)
+  humanURL: https://docs.wandb.ai/guides/track/log/
+  baseURL: https://api.wandb.ai/files
+  tags:
+  - HTTP
+  - Logging
+  - Ingestion
+  description: >-
+    The wandb client uses an HTTP file/import endpoint to push run metrics, system
+    stats, and artifacts. Generally accessed through the SDK rather than directly.
+  properties:
+  - type: Documentation
+    url: https://docs.wandb.ai/guides/track/log/
 common:
-  - type: Website
-    url: https://wandb.ai/
-  - type: Portal
-    url: https://docs.wandb.ai/
-  - type: Pricing
-    url: https://wandb.ai/site/pricing
-  - type: SourceCode
-    title: wandb client
-    url: https://github.com/wandb/wandb
-  - type: Plans
-    url: plans/weights-and-biases-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/weights-and-biases-rate-limits.yml
-  - type: FinOps
-    url: finops/weights-and-biases-finops.yml
+- type: Website
+  url: https://wandb.ai/
+- type: Portal
+  url: https://docs.wandb.ai/
+- type: Pricing
+  url: https://wandb.ai/site/pricing
+- type: SourceCode
+  title: wandb client
+  url: https://github.com/wandb/wandb
+- type: Plans
+  url: plans/weights-and-biases-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/weights-and-biases-rate-limits.yml
+- type: FinOps
+  url: finops/weights-and-biases-finops.yml
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com

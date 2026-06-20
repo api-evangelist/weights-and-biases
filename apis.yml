@@ -6,7 +6,7 @@ description: >-
   Weights & Biases is the ML developer platform for experiment tracking, model registry,
   artifact management, sweeps, reports, and (Weave) GenAI evaluation. The W&B API is
   primarily a GraphQL endpoint, surfaced through a Python `wandb.Api` SDK.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - ML
 - MLOps

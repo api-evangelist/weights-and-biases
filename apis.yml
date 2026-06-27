@@ -36,7 +36,7 @@ apis:
     url: https://docs.wandb.ai/ref/python/public-api/api/
   - type: Authentication
     url: https://docs.wandb.ai/guides/track/public-api-guide
-  - type: SDK
+  - type: SDKs
     title: Python (wandb)
     url: https://docs.wandb.ai/ref/python/
   - url: graphql/weights-and-biases-graphql.md

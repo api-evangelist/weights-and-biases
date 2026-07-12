@@ -56,6 +56,12 @@ apis:
   - type: Documentation
     url: https://docs.wandb.ai/guides/track/log/
 common:
+- type: VulnerabilityDisclosure
+  url: security/weights-and-biases-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/weights-and-biases-domain-security.yml
+- type: Authentication
+  url: authentication/weights-and-biases-authentication.yml
 - type: Website
   url: https://wandb.ai/
 - type: Portal

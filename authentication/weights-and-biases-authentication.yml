@@ -1,0 +1,12 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/weights-and-biases-openapi.json
+summary:
+  types:
+  - http
+schemes:
+- name: HTTPBasic
+  type: http
+  scheme: basic
+  sources:
+  - openapi/weights-and-biases-openapi.json

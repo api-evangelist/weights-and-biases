@@ -1,0 +1,33 @@
+{
+  "provider": "weights-and-biases",
+  "sources": [
+    "weights-and-biases-calls-api-openapi.yml",
+    "weights-and-biases-costs-api-openapi.yml",
+    "weights-and-biases-feedback-api-openapi.yml",
+    "weights-and-biases-files-api-openapi.yml",
+    "weights-and-biases-objects-api-openapi.yml",
+    "weights-and-biases-refs-api-openapi.yml",
+    "weights-and-biases-service-api-openapi.yml",
+    "weights-and-biases-table-api-openapi.yml",
+    "weights-and-biases-tables-api-openapi.yml"
+  ],
+  "outputs": [
+    "weights-and-biases-calls-api-openapi.yml",
+    "weights-and-biases-costs-api-openapi.yml",
+    "weights-and-biases-feedback-api-openapi.yml",
+    "weights-and-biases-files-api-openapi.yml",
+    "weights-and-biases-objects-api-openapi.yml",
+    "weights-and-biases-refs-api-openapi.yml",
+    "weights-and-biases-service-api-openapi.yml",
+    "weights-and-biases-table-api-openapi.yml",
+    "weights-and-biases-tables-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [
+    "weights-and-biases-calls-api-openapi.yml: dangling $ref: #/components/schemas/Schema",
+    "weights-and-biases-table-api-openapi.yml: dangling $ref: #/components/schemas/Schema"
+  ],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

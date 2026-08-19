@@ -1,0 +1,206 @@
+{
+  "item": [
+    {
+      "id": "667aec74-f5c2-4654-9b5f-6e7047b295da",
+      "name": "Table",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a902ea33-da08-432f-8938-ad5dc95a207b",
+          "name": "Table Query Stream",
+          "request": {
+            "name": "Table Query Stream",
+            "description": {},
+            "url": {
+              "path": [
+                "table",
+                "query_stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/jsonl"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project_id\": \"<string>\",\n  \"digest\": \"<string>\",\n  \"filter\": {\n    \"row_digests\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"limit\": \"<integer>\",\n  \"offset\": \"<integer>\",\n  \"sort_by\": [\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"direction\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3bd56609-0ab7-4d5f-9db4-e943f6884dbf",
+              "name": "Stream of data in JSONL format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "table",
+                    "query_stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "accept",
+                    "value": "application/jsonl",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/jsonl"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project_id\": \"my_entity/my_project\",\n  \"digest\": \"aonareimsvtl13apimtalpa4435rpmgnaemrpgmarltarstaorsnte134avrims\",\n  \"filter\": {\n    \"row_digests\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"limit\": \"<integer>\",\n  \"offset\": \"<integer>\",\n  \"sort_by\": [\n    {\n      \"field\": \"string\",\n      \"direction\": \"desc\"\n    },\n    {\n      \"field\": \"string\",\n      \"direction\": \"desc\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/jsonl"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a634033d-0ea5-40bb-9508-6b22799c1864",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "table",
+                    "query_stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "accept",
+                    "value": "application/jsonl",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project_id\": \"my_entity/my_project\",\n  \"digest\": \"aonareimsvtl13apimtalpa4435rpmgnaemrpgmarltarstaorsnte134avrims\",\n  \"filter\": {\n    \"row_digests\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"limit\": \"<integer>\",\n  \"offset\": \"<integer>\",\n  \"sort_by\": [\n    {\n      \"field\": \"string\",\n      \"direction\": \"desc\"\n    },\n    {\n      \"field\": \"string\",\n      \"direction\": \"desc\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://trace.wandb.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fbbc2395-563d-4660-8e0b-0f76d5077ac4",
+    "name": "Fast Calls Table API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

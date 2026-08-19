@@ -28,7 +28,7 @@ tags:
 - GenAI
 created: '2026-05-08'
 modified: '2026-05-08'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: weights-and-biases:wandb-graphql-api
   name: W&B GraphQL API

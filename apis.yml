@@ -36,6 +36,12 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/weights-and-biases.png
 tags:
+- Machine-Learning
+- MLOps
+- Experiment Tracking
+- Model Registry
+- Generative AI
+tags_raw:
 - ML
 - MLOps
 - Experiment Tracking
@@ -151,6 +157,8 @@ apis:
   humanURL: https://docs.wandb.ai/ref/python/public-api/api/
   baseURL: https://api.wandb.ai/graphql
   tags:
+  - Services
+  tags_raw:
   - Service
   properties:
   - type: OpenAPI

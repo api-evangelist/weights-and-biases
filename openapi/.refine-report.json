@@ -1,15 +1,7 @@
 {
   "provider": "weights-and-biases",
   "sources": [
-    "weights-and-biases-calls-api-openapi.yml",
-    "weights-and-biases-costs-api-openapi.yml",
-    "weights-and-biases-feedback-api-openapi.yml",
-    "weights-and-biases-files-api-openapi.yml",
-    "weights-and-biases-objects-api-openapi.yml",
-    "weights-and-biases-refs-api-openapi.yml",
-    "weights-and-biases-service-api-openapi.yml",
-    "weights-and-biases-table-api-openapi.yml",
-    "weights-and-biases-tables-api-openapi.yml"
+    "_original/weights-and-biases-openapi.json"
   ],
   "outputs": [
     "weights-and-biases-calls-api-openapi.yml",
@@ -24,10 +16,33 @@
   ],
   "archived": [],
   "errors": [
-    "weights-and-biases-calls-api-openapi.yml: dangling $ref: #/components/schemas/Schema",
-    "weights-and-biases-table-api-openapi.yml: dangling $ref: #/components/schemas/Schema"
+    "weights-and-biases-openapi.json: dangling $ref: #/components/schemas/Schema"
   ],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "weights-and-biases-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "weights-and-biases-openapi.json: tagged paths POST /table/query_stream -> Table",
+    "weights-and-biases-openapi.json: declared missing tag: Calls",
+    "weights-and-biases-openapi.json: declared missing tag: Costs",
+    "weights-and-biases-openapi.json: declared missing tag: Feedback",
+    "weights-and-biases-openapi.json: declared missing tag: Files",
+    "weights-and-biases-openapi.json: declared missing tag: Objects",
+    "weights-and-biases-openapi.json: declared missing tag: Refs",
+    "weights-and-biases-openapi.json: declared missing tag: Service",
+    "weights-and-biases-openapi.json: declared missing tag: Table",
+    "weights-and-biases-openapi.json: declared missing tag: Tables",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "weights-and-biases-calls-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "weights-and-biases-costs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "weights-and-biases-feedback-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "weights-and-biases-files-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "weights-and-biases-objects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "weights-and-biases-refs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "weights-and-biases-service-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "weights-and-biases-table-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "weights-and-biases-tables-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

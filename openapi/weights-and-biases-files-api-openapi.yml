@@ -61,20 +61,6 @@ paths:
       - HTTPBasic: []
 components:
   schemas:
-    Body_file_create_file_create_post:
-      properties:
-        project_id:
-          type: string
-          title: Project Id
-        file:
-          type: string
-          format: binary
-          title: File
-      type: object
-      required:
-      - project_id
-      - file
-      title: Body_file_create_file_create_post
     FileContentReadReq:
       properties:
         project_id:
@@ -109,15 +95,20 @@ components:
       - msg
       - type
       title: ValidationError
-    FileCreateRes:
+    Body_file_create_file_create_post:
       properties:
-        digest:
+        project_id:
           type: string
-          title: Digest
+          title: Project Id
+        file:
+          type: string
+          format: binary
+          title: File
       type: object
       required:
-      - digest
-      title: FileCreateRes
+      - project_id
+      - file
+      title: Body_file_create_file_create_post
     HTTPValidationError:
       properties:
         detail:
@@ -127,6 +118,15 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    FileCreateRes:
+      properties:
+        digest:
+          type: string
+          title: Digest
+      type: object
+      required:
+      - digest
+      title: FileCreateRes
   securitySchemes:
     HTTPBasic:
       type: http

@@ -36,7 +36,7 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/weights-and-biases.png
 tags:
-- Machine-Learning
+- Machine Learning
 - MLOps
 - Experiment Tracking
 - Model Registry
@@ -47,6 +47,7 @@ tags_raw:
 - Experiment Tracking
 - Model Registry
 - GenAI
+- Machine-Learning
 created: '2026-05-08'
 modified: '2026-05-08'
 specificationVersion: '0.23'

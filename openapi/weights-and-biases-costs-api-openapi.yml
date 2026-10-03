@@ -90,58 +90,53 @@ paths:
       - HTTPBasic: []
 components:
   schemas:
-    CostQueryReq:
+    AndOperation:
       properties:
-        project_id:
-          type: string
-          title: Project Id
-          examples:
-          - entity/project
-        fields:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Fields
-          examples:
-          - - id
-            - llm_id
-            - prompt_token_cost
-            - completion_token_cost
-            - prompt_token_cost_unit
-            - completion_token_cost_unit
-            - effective_date
-            - provider_id
-        query:
-          anyOf:
-          - $ref: '#/components/schemas/Query'
-          - type: 'null'
-        sort_by:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/SortBy'
-            type: array
-          - type: 'null'
-          title: Sort By
-        limit:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Limit
-          examples:
-          - 10
-        offset:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Offset
-          examples:
-          - 0
+        $and:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/LiteralOperation'
+            - $ref: '#/components/schemas/GetFieldOperator'
+            - $ref: '#/components/schemas/ConvertOperation'
+            - $ref: '#/components/schemas/AndOperation'
+            - $ref: '#/components/schemas/OrOperation'
+            - $ref: '#/components/schemas/NotOperation'
+            - $ref: '#/components/schemas/EqOperation'
+            - $ref: '#/components/schemas/GtOperation'
+            - $ref: '#/components/schemas/GteOperation'
+            - $ref: '#/components/schemas/InOperation'
+            - $ref: '#/components/schemas/ContainsOperation'
+          type: array
+          title: $And
       type: object
       required:
-      - project_id
-      title: CostQueryReq
+      - $and
+      title: AndOperation
+    CostCreateRes:
+      properties:
+        ids:
+          items:
+            prefixItems:
+            - type: string
+            - type: string
+            type: array
+            maxItems: 2
+            minItems: 2
+          type: array
+          title: Ids
+      type: object
+      required:
+      - ids
+      title: CostCreateRes
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     GteOperation:
       properties:
         $gte:
@@ -178,41 +173,6 @@ components:
       required:
       - $gte
       title: GteOperation
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    CostPurgeReq:
-      properties:
-        project_id:
-          type: string
-          title: Project Id
-          examples:
-          - entity/project
-        query:
-          $ref: '#/components/schemas/Query'
-      type: object
-      required:
-      - project_id
-      - query
-      title: CostPurgeReq
     GetFieldOperator:
       properties:
         $getField:
@@ -222,99 +182,6 @@ components:
       required:
       - $getField
       title: GetFieldOperator
-    EqOperation:
-      properties:
-        $eq:
-          prefixItems:
-          - anyOf:
-            - $ref: '#/components/schemas/LiteralOperation'
-            - $ref: '#/components/schemas/GetFieldOperator'
-            - $ref: '#/components/schemas/ConvertOperation'
-            - $ref: '#/components/schemas/AndOperation'
-            - $ref: '#/components/schemas/OrOperation'
-            - $ref: '#/components/schemas/NotOperation'
-            - $ref: '#/components/schemas/EqOperation'
-            - $ref: '#/components/schemas/GtOperation'
-            - $ref: '#/components/schemas/GteOperation'
-            - $ref: '#/components/schemas/InOperation'
-            - $ref: '#/components/schemas/ContainsOperation'
-          - anyOf:
-            - $ref: '#/components/schemas/LiteralOperation'
-            - $ref: '#/components/schemas/GetFieldOperator'
-            - $ref: '#/components/schemas/ConvertOperation'
-            - $ref: '#/components/schemas/AndOperation'
-            - $ref: '#/components/schemas/OrOperation'
-            - $ref: '#/components/schemas/NotOperation'
-            - $ref: '#/components/schemas/EqOperation'
-            - $ref: '#/components/schemas/GtOperation'
-            - $ref: '#/components/schemas/GteOperation'
-            - $ref: '#/components/schemas/InOperation'
-            - $ref: '#/components/schemas/ContainsOperation'
-          type: array
-          maxItems: 2
-          minItems: 2
-          title: $Eq
-      type: object
-      required:
-      - $eq
-      title: EqOperation
-    CostCreateInput:
-      properties:
-        prompt_token_cost:
-          type: number
-          title: Prompt Token Cost
-        completion_token_cost:
-          type: number
-          title: Completion Token Cost
-        prompt_token_cost_unit:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Prompt Token Cost Unit
-          description: The unit of the cost for the prompt tokens
-          default: USD
-        completion_token_cost_unit:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Completion Token Cost Unit
-          description: The unit of the cost for the completion tokens
-          default: USD
-        effective_date:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Effective Date
-          description: The date after which the cost is effective for, will default to the current date if not provided
-        provider_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Provider Id
-          description: The provider of the LLM, e.g. 'openai' or 'mistral'. If not provided, the provider_id will be set to 'default'
-      type: object
-      required:
-      - prompt_token_cost
-      - completion_token_cost
-      title: CostCreateInput
-    Query:
-      properties:
-        $expr:
-          anyOf:
-          - $ref: '#/components/schemas/AndOperation'
-          - $ref: '#/components/schemas/OrOperation'
-          - $ref: '#/components/schemas/NotOperation'
-          - $ref: '#/components/schemas/EqOperation'
-          - $ref: '#/components/schemas/GtOperation'
-          - $ref: '#/components/schemas/GteOperation'
-          - $ref: '#/components/schemas/InOperation'
-          - $ref: '#/components/schemas/ContainsOperation'
-          title: $Expr
-      type: object
-      required:
-      - $expr
-      title: Query
     ConvertOperation:
       properties:
         $convert:
@@ -323,34 +190,22 @@ components:
       required:
       - $convert
       title: ConvertOperation
-    HTTPValidationError:
+    SortBy:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ContainsOperation:
-      properties:
-        $contains:
-          $ref: '#/components/schemas/ContainsSpec'
+        field:
+          type: string
+          title: Field
+        direction:
+          type: string
+          enum:
+          - asc
+          - desc
+          title: Direction
       type: object
       required:
-      - $contains
-      title: ContainsOperation
-    CostQueryRes:
-      properties:
-        results:
-          items:
-            $ref: '#/components/schemas/CostQueryOutput'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: CostQueryRes
+      - field
+      - direction
+      title: SortBy
     NotOperation:
       properties:
         $not:
@@ -375,48 +230,6 @@ components:
       required:
       - $not
       title: NotOperation
-    CostPurgeRes:
-      properties: {}
-      type: object
-      title: CostPurgeRes
-    CostCreateRes:
-      properties:
-        ids:
-          items:
-            prefixItems:
-            - type: string
-            - type: string
-            type: array
-            maxItems: 2
-            minItems: 2
-          type: array
-          title: Ids
-      type: object
-      required:
-      - ids
-      title: CostCreateRes
-    OrOperation:
-      properties:
-        $or:
-          items:
-            anyOf:
-            - $ref: '#/components/schemas/LiteralOperation'
-            - $ref: '#/components/schemas/GetFieldOperator'
-            - $ref: '#/components/schemas/ConvertOperation'
-            - $ref: '#/components/schemas/AndOperation'
-            - $ref: '#/components/schemas/OrOperation'
-            - $ref: '#/components/schemas/NotOperation'
-            - $ref: '#/components/schemas/EqOperation'
-            - $ref: '#/components/schemas/GtOperation'
-            - $ref: '#/components/schemas/GteOperation'
-            - $ref: '#/components/schemas/InOperation'
-            - $ref: '#/components/schemas/ContainsOperation'
-          type: array
-          title: $Or
-      type: object
-      required:
-      - $or
-      title: OrOperation
     CostQueryOutput:
       properties:
         id:
@@ -478,47 +291,70 @@ components:
           - openai
       type: object
       title: CostQueryOutput
-    SortBy:
+    LiteralOperation:
       properties:
-        field:
-          type: string
-          title: Field
-        direction:
+        $literal:
+          anyOf:
+          - type: string
+          - type: integer
+          - type: number
+          - type: boolean
+          - additionalProperties:
+              $ref: '#/components/schemas/LiteralOperation'
+            type: object
+          - items:
+              $ref: '#/components/schemas/LiteralOperation'
+            type: array
+          - type: 'null'
+          title: $Literal
+      type: object
+      required:
+      - $literal
+      title: LiteralOperation
+    CostQueryRes:
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/CostQueryOutput'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: CostQueryRes
+    ConvertSpec:
+      properties:
+        input:
+          anyOf:
+          - $ref: '#/components/schemas/LiteralOperation'
+          - $ref: '#/components/schemas/GetFieldOperator'
+          - $ref: '#/components/schemas/ConvertOperation'
+          - $ref: '#/components/schemas/AndOperation'
+          - $ref: '#/components/schemas/OrOperation'
+          - $ref: '#/components/schemas/NotOperation'
+          - $ref: '#/components/schemas/EqOperation'
+          - $ref: '#/components/schemas/GtOperation'
+          - $ref: '#/components/schemas/GteOperation'
+          - $ref: '#/components/schemas/InOperation'
+          - $ref: '#/components/schemas/ContainsOperation'
+          title: Input
+        to:
           type: string
           enum:
-          - asc
-          - desc
-          title: Direction
+          - double
+          - string
+          - int
+          - bool
+          - exists
+          title: To
       type: object
       required:
-      - field
-      - direction
-      title: SortBy
-    AndOperation:
+      - input
+      - to
+      title: ConvertSpec
+    EqOperation:
       properties:
-        $and:
-          items:
-            anyOf:
-            - $ref: '#/components/schemas/LiteralOperation'
-            - $ref: '#/components/schemas/GetFieldOperator'
-            - $ref: '#/components/schemas/ConvertOperation'
-            - $ref: '#/components/schemas/AndOperation'
-            - $ref: '#/components/schemas/OrOperation'
-            - $ref: '#/components/schemas/NotOperation'
-            - $ref: '#/components/schemas/EqOperation'
-            - $ref: '#/components/schemas/GtOperation'
-            - $ref: '#/components/schemas/GteOperation'
-            - $ref: '#/components/schemas/InOperation'
-            - $ref: '#/components/schemas/ContainsOperation'
-          type: array
-          title: $And
-      type: object
-      required:
-      - $and
-      title: AndOperation
-    InOperation:
-      properties:
-        $in:
+        $eq:
           prefixItems:
           - anyOf:
             - $ref: '#/components/schemas/LiteralOperation'
@@ -532,28 +368,49 @@ components:
             - $ref: '#/components/schemas/GteOperation'
             - $ref: '#/components/schemas/InOperation'
             - $ref: '#/components/schemas/ContainsOperation'
-          - items:
-              anyOf:
-              - $ref: '#/components/schemas/LiteralOperation'
-              - $ref: '#/components/schemas/GetFieldOperator'
-              - $ref: '#/components/schemas/ConvertOperation'
-              - $ref: '#/components/schemas/AndOperation'
-              - $ref: '#/components/schemas/OrOperation'
-              - $ref: '#/components/schemas/NotOperation'
-              - $ref: '#/components/schemas/EqOperation'
-              - $ref: '#/components/schemas/GtOperation'
-              - $ref: '#/components/schemas/GteOperation'
-              - $ref: '#/components/schemas/InOperation'
-              - $ref: '#/components/schemas/ContainsOperation'
-            type: array
+          - anyOf:
+            - $ref: '#/components/schemas/LiteralOperation'
+            - $ref: '#/components/schemas/GetFieldOperator'
+            - $ref: '#/components/schemas/ConvertOperation'
+            - $ref: '#/components/schemas/AndOperation'
+            - $ref: '#/components/schemas/OrOperation'
+            - $ref: '#/components/schemas/NotOperation'
+            - $ref: '#/components/schemas/EqOperation'
+            - $ref: '#/components/schemas/GtOperation'
+            - $ref: '#/components/schemas/GteOperation'
+            - $ref: '#/components/schemas/InOperation'
+            - $ref: '#/components/schemas/ContainsOperation'
           type: array
           maxItems: 2
           minItems: 2
-          title: $In
+          title: $Eq
       type: object
       required:
-      - $in
-      title: InOperation
+      - $eq
+      title: EqOperation
+    CostCreateReq:
+      properties:
+        project_id:
+          type: string
+          title: Project Id
+          examples:
+          - entity/project
+        costs:
+          additionalProperties:
+            $ref: '#/components/schemas/CostCreateInput'
+          type: object
+          title: Costs
+        wb_user_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Wb User Id
+          description: Do not set directly. Server will automatically populate this field.
+      type: object
+      required:
+      - project_id
+      - costs
+      title: CostCreateReq
     GtOperation:
       properties:
         $gt:
@@ -631,13 +488,166 @@ components:
       - input
       - substr
       title: ContainsSpec
-    ConvertSpec:
+    CostPurgeRes:
+      properties: {}
+      type: object
+      title: CostPurgeRes
+    CostQueryReq:
       properties:
-        input:
+        project_id:
+          type: string
+          title: Project Id
+          examples:
+          - entity/project
+        fields:
           anyOf:
-          - $ref: '#/components/schemas/LiteralOperation'
-          - $ref: '#/components/schemas/GetFieldOperator'
-          - $ref: '#/components/schemas/ConvertOperation'
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Fields
+          examples:
+          - - id
+            - llm_id
+            - prompt_token_cost
+            - completion_token_cost
+            - prompt_token_cost_unit
+            - completion_token_cost_unit
+            - effective_date
+            - provider_id
+        query:
+          anyOf:
+          - $ref: '#/components/schemas/Query'
+          - type: 'null'
+        sort_by:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/SortBy'
+            type: array
+          - type: 'null'
+          title: Sort By
+        limit:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Limit
+          examples:
+          - 10
+        offset:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Offset
+          examples:
+          - 0
+      type: object
+      required:
+      - project_id
+      title: CostQueryReq
+    CostPurgeReq:
+      properties:
+        project_id:
+          type: string
+          title: Project Id
+          examples:
+          - entity/project
+        query:
+          $ref: '#/components/schemas/Query'
+      type: object
+      required:
+      - project_id
+      - query
+      title: CostPurgeReq
+    ContainsOperation:
+      properties:
+        $contains:
+          $ref: '#/components/schemas/ContainsSpec'
+      type: object
+      required:
+      - $contains
+      title: ContainsOperation
+    CostCreateInput:
+      properties:
+        prompt_token_cost:
+          type: number
+          title: Prompt Token Cost
+        completion_token_cost:
+          type: number
+          title: Completion Token Cost
+        prompt_token_cost_unit:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Prompt Token Cost Unit
+          description: The unit of the cost for the prompt tokens
+          default: USD
+        completion_token_cost_unit:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Completion Token Cost Unit
+          description: The unit of the cost for the completion tokens
+          default: USD
+        effective_date:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Effective Date
+          description: The date after which the cost is effective for, will default to the current date if not provided
+        provider_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Provider Id
+          description: The provider of the LLM, e.g. 'openai' or 'mistral'. If not provided, the provider_id will be set to 'default'
+      type: object
+      required:
+      - prompt_token_cost
+      - completion_token_cost
+      title: CostCreateInput
+    InOperation:
+      properties:
+        $in:
+          prefixItems:
+          - anyOf:
+            - $ref: '#/components/schemas/LiteralOperation'
+            - $ref: '#/components/schemas/GetFieldOperator'
+            - $ref: '#/components/schemas/ConvertOperation'
+            - $ref: '#/components/schemas/AndOperation'
+            - $ref: '#/components/schemas/OrOperation'
+            - $ref: '#/components/schemas/NotOperation'
+            - $ref: '#/components/schemas/EqOperation'
+            - $ref: '#/components/schemas/GtOperation'
+            - $ref: '#/components/schemas/GteOperation'
+            - $ref: '#/components/schemas/InOperation'
+            - $ref: '#/components/schemas/ContainsOperation'
+          - items:
+              anyOf:
+              - $ref: '#/components/schemas/LiteralOperation'
+              - $ref: '#/components/schemas/GetFieldOperator'
+              - $ref: '#/components/schemas/ConvertOperation'
+              - $ref: '#/components/schemas/AndOperation'
+              - $ref: '#/components/schemas/OrOperation'
+              - $ref: '#/components/schemas/NotOperation'
+              - $ref: '#/components/schemas/EqOperation'
+              - $ref: '#/components/schemas/GtOperation'
+              - $ref: '#/components/schemas/GteOperation'
+              - $ref: '#/components/schemas/InOperation'
+              - $ref: '#/components/schemas/ContainsOperation'
+            type: array
+          type: array
+          maxItems: 2
+          minItems: 2
+          title: $In
+      type: object
+      required:
+      - $in
+      title: InOperation
+    Query:
+      properties:
+        $expr:
+          anyOf:
           - $ref: '#/components/schemas/AndOperation'
           - $ref: '#/components/schemas/OrOperation'
           - $ref: '#/components/schemas/NotOperation'
@@ -646,64 +656,54 @@ components:
           - $ref: '#/components/schemas/GteOperation'
           - $ref: '#/components/schemas/InOperation'
           - $ref: '#/components/schemas/ContainsOperation'
-          title: Input
-        to:
-          type: string
-          enum:
-          - double
-          - string
-          - int
-          - bool
-          - exists
-          title: To
+          title: $Expr
       type: object
       required:
-      - input
-      - to
-      title: ConvertSpec
-    CostCreateReq:
+      - $expr
+      title: Query
+    OrOperation:
       properties:
-        project_id:
-          type: string
-          title: Project Id
-          examples:
-          - entity/project
-        costs:
-          additionalProperties:
-            $ref: '#/components/schemas/CostCreateInput'
-          type: object
-          title: Costs
-        wb_user_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Wb User Id
-          description: Do not set directly. Server will automatically populate this field.
+        $or:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/LiteralOperation'
+            - $ref: '#/components/schemas/GetFieldOperator'
+            - $ref: '#/components/schemas/ConvertOperation'
+            - $ref: '#/components/schemas/AndOperation'
+            - $ref: '#/components/schemas/OrOperation'
+            - $ref: '#/components/schemas/NotOperation'
+            - $ref: '#/components/schemas/EqOperation'
+            - $ref: '#/components/schemas/GtOperation'
+            - $ref: '#/components/schemas/GteOperation'
+            - $ref: '#/components/schemas/InOperation'
+            - $ref: '#/components/schemas/ContainsOperation'
+          type: array
+          title: $Or
       type: object
       required:
-      - project_id
-      - costs
-      title: CostCreateReq
-    LiteralOperation:
+      - $or
+      title: OrOperation
+    ValidationError:
       properties:
-        $literal:
-          anyOf:
-          - type: string
-          - type: integer
-          - type: number
-          - type: boolean
-          - additionalProperties:
-              $ref: '#/components/schemas/LiteralOperation'
-            type: object
-          - items:
-              $ref: '#/components/schemas/LiteralOperation'
-            type: array
-          - type: 'null'
-          title: $Literal
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
       type: object
       required:
-      - $literal
-      title: LiteralOperation
+      - loc
+      - msg
+      - type
+      title: ValidationError
   securitySchemes:
     HTTPBasic:
       type: http

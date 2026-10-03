@@ -117,6 +117,30 @@ components:
       - field
       - direction
       title: SortBy
+    TableRowFilter:
+      properties:
+        row_digests:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Row Digests
+          description: List of row digests to filter by
+          examples:
+          - - aonareimsvtl13apimtalpa4435rpmgnaemrpgmarltarstaorsnte134avrims
+            - aonareimsvtl13apimtalpa4435rpmgnaemrpgmarltarstaorsnte134avrims
+      type: object
+      title: TableRowFilter
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
@@ -138,30 +162,6 @@ components:
       - msg
       - type
       title: ValidationError
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    TableRowFilter:
-      properties:
-        row_digests:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Row Digests
-          description: List of row digests to filter by
-          examples:
-          - - aonareimsvtl13apimtalpa4435rpmgnaemrpgmarltarstaorsnte134avrims
-            - aonareimsvtl13apimtalpa4435rpmgnaemrpgmarltarstaorsnte134avrims
-      type: object
-      title: TableRowFilter
   securitySchemes:
     HTTPBasic:
       type: http

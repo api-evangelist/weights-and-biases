@@ -61,6 +61,15 @@ paths:
       - HTTPBasic: []
 components:
   schemas:
+    FileCreateRes:
+      properties:
+        digest:
+          type: string
+          title: Digest
+      type: object
+      required:
+      - digest
+      title: FileCreateRes
     FileContentReadReq:
       properties:
         project_id:
@@ -74,6 +83,29 @@ components:
       - project_id
       - digest
       title: FileContentReadReq
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    Body_file_create_file_create_post:
+      properties:
+        project_id:
+          type: string
+          title: Project Id
+        file:
+          type: string
+          format: binary
+          title: File
+      type: object
+      required:
+      - project_id
+      - file
+      title: Body_file_create_file_create_post
     ValidationError:
       properties:
         loc:
@@ -95,38 +127,6 @@ components:
       - msg
       - type
       title: ValidationError
-    Body_file_create_file_create_post:
-      properties:
-        project_id:
-          type: string
-          title: Project Id
-        file:
-          type: string
-          format: binary
-          title: File
-      type: object
-      required:
-      - project_id
-      - file
-      title: Body_file_create_file_create_post
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    FileCreateRes:
-      properties:
-        digest:
-          type: string
-          title: Digest
-      type: object
-      required:
-      - digest
-      title: FileCreateRes
   securitySchemes:
     HTTPBasic:
       type: http

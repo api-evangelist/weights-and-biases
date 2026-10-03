@@ -36,6 +36,17 @@ paths:
       - HTTPBasic: []
 components:
   schemas:
+    RefsReadBatchReq:
+      properties:
+        refs:
+          items:
+            type: string
+          type: array
+          title: Refs
+      type: object
+      required:
+      - refs
+      title: RefsReadBatchReq
     HTTPValidationError:
       properties:
         detail:
@@ -76,17 +87,6 @@ components:
       - msg
       - type
       title: ValidationError
-    RefsReadBatchReq:
-      properties:
-        refs:
-          items:
-            type: string
-          type: array
-          title: Refs
-      type: object
-      required:
-      - refs
-      title: RefsReadBatchReq
   securitySchemes:
     HTTPBasic:
       type: http

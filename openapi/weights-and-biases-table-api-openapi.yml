@@ -46,6 +46,52 @@ paths:
       - Table
 components:
   schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    SortBy:
+      properties:
+        field:
+          type: string
+          title: Field
+        direction:
+          type: string
+          enum:
+          - asc
+          - desc
+          title: Direction
+      type: object
+      required:
+      - field
+      - direction
+      title: SortBy
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     TableQueryReq:
       properties:
         project_id:
@@ -101,22 +147,6 @@ components:
       - project_id
       - digest
       title: TableQueryReq
-    SortBy:
-      properties:
-        field:
-          type: string
-          title: Field
-        direction:
-          type: string
-          enum:
-          - asc
-          - desc
-          title: Direction
-      type: object
-      required:
-      - field
-      - direction
-      title: SortBy
     TableRowFilter:
       properties:
         row_digests:
@@ -132,36 +162,6 @@ components:
             - aonareimsvtl13apimtalpa4435rpmgnaemrpgmarltarstaorsnte134avrims
       type: object
       title: TableRowFilter
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
   securitySchemes:
     HTTPBasic:
       type: http

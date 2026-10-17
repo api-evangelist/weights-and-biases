@@ -61,6 +61,15 @@ paths:
       - HTTPBasic: []
 components:
   schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
@@ -82,15 +91,6 @@ components:
       - msg
       - type
       title: ValidationError
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     Body_file_create_file_create_post:
       properties:
         project_id:
@@ -105,6 +105,15 @@ components:
       - project_id
       - file
       title: Body_file_create_file_create_post
+    FileCreateRes:
+      properties:
+        digest:
+          type: string
+          title: Digest
+      type: object
+      required:
+      - digest
+      title: FileCreateRes
     FileContentReadReq:
       properties:
         project_id:
@@ -118,15 +127,6 @@ components:
       - project_id
       - digest
       title: FileContentReadReq
-    FileCreateRes:
-      properties:
-        digest:
-          type: string
-          title: Digest
-      type: object
-      required:
-      - digest
-      title: FileCreateRes
   securitySchemes:
     HTTPBasic:
       type: http

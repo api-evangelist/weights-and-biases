@@ -47,15 +47,6 @@ components:
       required:
       - refs
       title: RefsReadBatchReq
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     RefsReadBatchRes:
       properties:
         vals:
@@ -66,6 +57,15 @@ components:
       required:
       - vals
       title: RefsReadBatchRes
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
